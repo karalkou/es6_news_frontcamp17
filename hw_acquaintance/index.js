@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch(req)
         .then(function(response) {
-            return response.json()
+            let responseJSON = response.json();
+            console.log(responseJSON);
+            return responseJSON;
         })
         .then( (response) => {
             handleResponse(response, container);
