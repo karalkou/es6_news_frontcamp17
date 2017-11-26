@@ -17,9 +17,9 @@ class NewsList extends Component {
     state = {};
 
     render() {
+        if (this.props.loading) return <Loader />;
 
-        const {news, loading, loaded} = this.props;
-
+        const {news} = this.props;
         const newsList = news.map( (entity, index) => {
             return (
                 <NewsListItem newsItem={entity} key={index}/>
