@@ -4,6 +4,8 @@ import {fetchAllNews, newsListSelector, loadedSelector, loadingSelector} from '.
 import NewsListItem from './NewsListItem';
 import Loader from '../common/Loader';
 
+import './news.css';
+
 class NewsList extends Component {
     static propTypes = {};
     static defaultProps = {};
@@ -18,10 +20,16 @@ class NewsList extends Component {
 
         const {news, loading, loaded} = this.props;
 
-        console.log('--- news: ', news);
+        const newsList = news.map( (entity, index) => {
+            return (
+                <NewsListItem newsItem={entity} key={index}/>
+            );
+        } );
 
         return (
-            <NewsListItem/>
+            <ul className="news-list">
+                {newsList}
+            </ul>
         )
     }
 }

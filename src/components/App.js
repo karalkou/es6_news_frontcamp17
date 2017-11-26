@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Route, NavLink} from 'react-router-dom';
 import NewsListPage from './routes/NewsListPage';
 
+import './app.css';
+
 class App extends Component {
     static propTypes = {};
 

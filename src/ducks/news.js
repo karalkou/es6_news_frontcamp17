@@ -24,12 +24,10 @@ const ReducerState = Record({
 });
 
 const NewsRecord = Record({
-    id: null,
     author: null,
     description: null,
     publishedAt: null,
-    sourceId: null,
-    sourceName: null,
+    source: null,
     title: null,
     url: null,
     urlToImage: null
@@ -47,7 +45,7 @@ export default function reducer(state = new ReducerState(), action) {
                 .set('loading', false)
                 .set('loaded', true)
                 // .set('entities', fbToEntities(payload, NewsRecord));
-                .set('entities', new NewsRecord({...payload}));
+                .set('entities', payload.map( (entity) => (new NewsRecord({...entity})) ));
 
         default:
             return state
@@ -60,7 +58,12 @@ export const stateSelector = state => state[moduleName];
 export const entitiesSelector = createSelector(stateSelector, state => state.entities);
 export const loadingSelector = createSelector(stateSelector, state => state.loading);
 export const loadedSelector = createSelector(stateSelector, state => state.loaded);
-export const newsListSelector = createSelector(entitiesSelector, entities => entities.valueSeq().toArray());
+export const newsListSelector = createSelector(entitiesSelector, entities => {
+    // console.log('entitites: ', entities);
+    //console.log('entities.valueSeq(): ', entities.valueSeq());
+    //entities.valueSeq().toArray();
+    return entities
+});
 
 /**
  * Action Creators
