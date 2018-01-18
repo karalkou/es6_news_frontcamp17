@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {customImageUrl, dateOptions} from './../../config';
 
 class NewsListItem extends Component {
     static propTypes = {};
@@ -8,36 +9,33 @@ class NewsListItem extends Component {
 
     render() {
         const {newsItem} = this.props;
-        const {urlToImage, title, publishedAt, description, source, author, url} = newsItem;
-
-        let options = {
-            era: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            weekday: 'long',
-            timezone: 'UTC',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric'
-        };
-        const formattedPublishedAt = new Date(publishedAt).toLocaleString("ru", options);
+        const {urlToImage, title, publishedAt, description, author, url} = newsItem;
+        const formattedPublishedAt = new Date(publishedAt).toLocaleString("ru", dateOptions);
 
         return (
-            <li className="news-list__item">
-                <div className="news-list__item-pic">
-                    <img src={urlToImage} alt=""/>
-                </div>
+            <li className="news-list-item">
+                <div className="news-list-item__img" style={{ backgroundImage: `url(${urlToImage || customImageUrl})`}}/>
 
-                <div className="news-list__item-content">
-                    <h4 className="news-list__item-title">{title}</h4>
-                    <div className="news-list__item-date">{formattedPublishedAt}</div>
-                    <p className="news-list__item-descr">{description}</p>
-                    <div className="news-list__item-author">Author: {author}</div>
-                    <div>Link: <a className="news-list__item-link" href={url}>{url}</a></div>
+                <div className="news-list-item__wrapper">
+                    <div className="news-list-item__header">
+                        <div className="news-list-item__date">
+                            ${formattedPublishedAt}
+                        </div>
+                    </div>
+                    <div className="news-list-item__data">
+                        <div className="news-list-item__content">
+                            <span className="news-list-item__author">${author}</span>
+                            <h1 className="news-list-item__title"><a href="#">${title}</a></h1>
+                            <p className="news-list-item__description">${description}</p>
+                            <a href={url} className="news-list-item__button">Read more</a>
+                        </div>
+                    </div>
                 </div>
 
             </li>
+
+
+
         )
     }
 }

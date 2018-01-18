@@ -27,7 +27,7 @@ class NewsList extends Component {
         } );
 
         return (
-            <ul className="news-list">
+            <ul className="news-list news-container">
                 {newsList}
             </ul>
         )

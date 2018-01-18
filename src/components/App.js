@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, NavLink} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import NewsListPage from './routes/NewsListPage';
 
 import './app.css';
@@ -9,9 +9,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <Route path = '/' component = {NewsListPage}/>
-            </div>
+            <Route path = '/' component = {NewsListPage}/>
         )
     }
 }

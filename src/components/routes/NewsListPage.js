@@ -6,13 +6,7 @@ class NewsListPage extends Component {
 
     render() {
         return (
-            <div>
-                <NewsList/>
-                <div style={{textAlign: 'center'}}>
-                    Thanks to <a href="https://newsapi.org/">newsapi.org</a>
-                </div>
-
-            </div>
+            <NewsList/>
         )
     }
 }
