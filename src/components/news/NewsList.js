@@ -4,8 +4,6 @@ import {fetchAllNews, newsListSelector, loadedSelector, loadingSelector} from '.
 import NewsListItem from './NewsListItem';
 import Loader from '../common/Loader';
 
-import './news.css';
-
 class NewsList extends Component {
     static propTypes = {};
     static defaultProps = {};

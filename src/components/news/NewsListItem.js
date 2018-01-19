@@ -1,5 +1,54 @@
 import React, { Component } from 'react';
 import {customImageUrl, dateOptions} from './../../config';
+import styled from 'styled-components';
+import bemto from 'bemto-components';
+
+const NewsListItemStyled = styled(bemto({
+    content: [
+        {
+            elem: 'img',
+            children: true
+        },
+        {
+            elem: 'wrapper',
+            children: [
+                {
+                    elem: 'header',
+                    children: {
+                        elem: 'date',
+                        children: true
+                    }
+                },
+                {
+                    elem: 'data',
+                    children: [
+                        {
+                            elem: 'content',
+                            children: [
+                                {
+                                    elem: 'author',
+                                    children: true
+                                },
+                                {
+                                    elem: 'title',
+                                    children: true
+                                },
+                                {
+                                    elem: 'description',
+                                    children: true
+                                },
+                                {
+                                    elem: 'button',
+                                    children: true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}))``;
 
 class NewsListItem extends Component {
     static propTypes = {};
@@ -33,19 +82,8 @@ class NewsListItem extends Component {
                 </div>
 
             </li>
-
-
-
         )
     }
 }
 
-export default NewsListItem
-
-   /* author: null,
-    description: null,
-    publishedAt: null,
-    source: null,
-    title: null,
-    url: null,
-    urlToImage: null*/
+export default NewsListItem;
