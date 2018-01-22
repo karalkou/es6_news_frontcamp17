@@ -62,6 +62,10 @@ class NewsListItem extends Component {
         const formattedPublishedAt = new Date(publishedAt).toLocaleString("ru", dateOptions);
 
         return (
+            <NewsListItemStyled/>
+        )
+
+       /* return (
             <li className="news-list-item">
                 <div className="news-list-item__img" style={{ backgroundImage: `url(${urlToImage || customImageUrl})`}}/>
 
@@ -82,7 +86,7 @@ class NewsListItem extends Component {
                 </div>
 
             </li>
-        )
+        )*/
     }
 }
 
