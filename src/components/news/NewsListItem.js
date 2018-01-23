@@ -3,7 +3,7 @@ import {customImageUrl, dateOptions} from './../../config';
 import styled from 'styled-components';
 import bemto from 'bemto-components';
 
-const NewsListItemStyled = styled(bemto({
+const NewsListItemStyled = styled(bemto('li', {
     content: [
         {
             elem: 'img',
@@ -11,35 +11,34 @@ const NewsListItemStyled = styled(bemto({
         },
         {
             elem: 'wrapper',
-            children: [
+            children: true,
+            content: [
                 {
                     elem: 'header',
-                    children: {
+                    children: true,
+                    content: {
                         elem: 'date',
-                        children: true
                     }
                 },
                 {
                     elem: 'data',
-                    children: [
+                    children: true,
+                    content: [
                         {
                             elem: 'content',
-                            children: [
+                            children: true,
+                            content: [
                                 {
-                                    elem: 'author',
-                                    children: true
+                                    elem: 'author'
                                 },
                                 {
-                                    elem: 'title',
-                                    children: true
+                                    elem: 'title'
                                 },
                                 {
-                                    elem: 'description',
-                                    children: true
+                                    elem: 'description'
                                 },
                                 {
-                                    elem: 'button',
-                                    children: true
+                                    elem: 'button'
                                 }
                             ]
                         }
@@ -48,7 +47,22 @@ const NewsListItemStyled = styled(bemto({
             ]
         }
     ]
-}))``;
+}))`
+list-style: none;
+
+&__img {
+  background-image: url( ${(props) => props.__img.url} )
+}
+&__wrapper {
+    position: relative;
+    padding: 0 15px;
+    min-height: 400px;
+    overflow: hidden;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+    z-index: 2;
+    }
+`;
 
 class NewsListItem extends Component {
     static propTypes = {};
@@ -59,10 +73,18 @@ class NewsListItem extends Component {
     render() {
         const {newsItem} = this.props;
         const {urlToImage, title, publishedAt, description, author, url} = newsItem;
-        const formattedPublishedAt = new Date(publishedAt).toLocaleString("ru", dateOptions);
+        const formattedPublishedAt = new Date(publishedAt).toLocaleString("en", dateOptions);
 
         return (
-            <NewsListItemStyled/>
+            <NewsListItemStyled
+                className="news-list-item"
+                __img={{ url: (urlToImage || customImageUrl) } }
+                __date={ `${formattedPublishedAt}` }
+                __author={ `${author}` }
+                __title={ `${title}` }
+                __description={ `${description}` }
+                __button={{ props: { href: url } }}
+            />
         )
 
        /* return (
