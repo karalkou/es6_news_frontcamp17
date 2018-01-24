@@ -47,7 +47,9 @@ const NewsListItemStyled = styled(bemto('li', {
             ]
         }
     ]
-}))`
+})).attrs({
+    className: "news-list-item"
+})`
 list-style: none;
 
 &__img {
@@ -77,13 +79,12 @@ class NewsListItem extends Component {
 
         return (
             <NewsListItemStyled
-                className="news-list-item"
                 __img={{ url: (urlToImage || customImageUrl) } }
                 __date={ `${formattedPublishedAt}` }
                 __author={ `${author}` }
                 __title={ `${title}` }
                 __description={ `${description}` }
-                __button={{ props: { href: url } }}
+                __button={{ content: 'Read more', props: { href: url } }}
             />
         )
     }
